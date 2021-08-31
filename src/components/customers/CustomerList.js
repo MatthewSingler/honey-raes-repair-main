@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 
 export const CustomerList = () => {
     const [customers, setCustomers] = useState([])
+    const [totalCustomers, setCustomersMessage] = useState([])
     useEffect(
         () => {
             fetch("http://localhost:8088/customers")
@@ -13,13 +14,22 @@ export const CustomerList = () => {
         []
     )
 
+    useEffect(
+        () => {
+            setCustomersMessage (`You have ${customers.length} customers`)
+        },
+        [customers]
+    )
+
     return (
         <>
-
+            <div>
+                {totalCustomers}
+            </div>
             {
                 customers.map(
                     (customerObject) => {
-                        return <h2 key={`customer--${customerObject.id}`}>{customerObject.name}</h2>
+                        return <p key={`customer--${customerObject.id}`}>{customerObject.name}</p>
                     }
                 )
             }
