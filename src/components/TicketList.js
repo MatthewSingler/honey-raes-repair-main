@@ -6,7 +6,7 @@ export const TicketList = () => {
 
     useEffect(
         () => {
-            fetch("http://localhost:8088/serviceTickets")
+            fetch("http://localhost:8088/servicetickets?_expand=customer&_expand=employee")
                 .then(res => res.json())
                 .then((serviceTicketsArray) => {
                     setServiceTickets(serviceTicketsArray)
@@ -18,7 +18,7 @@ export const TicketList = () => {
     useEffect(
         () => {
             const allServiceTickets = serviceTickets.map(ticket => ticket.id)
-                setTickets(allServiceTickets.join(", "))
+                setTickets(allServiceTickets.join(" , "))
         }, [serviceTickets])
 
 
@@ -26,15 +26,15 @@ export const TicketList = () => {
         <>
             <div>
                 Service Tickets: {openServiceTickets}
-            </div>
 
             {
                 serviceTickets.map(
                     (ticketObject) => {
-                        return <p key={`ticket--${ticketObject.id}`}>{ticketObject.customerId} needs service for {ticketObject.description} and is being helped by {ticketObject.employeeId}</p>
+                        return <p key={`ticket--${ticketObject.id}`}>{ticketObject.description} SUBMITTED BY {ticketObject.customer.name}. BEING WORKED ON BY {ticketObject.employee.name}</p>
                     }
-                )
-            }
+                    )
+                }
+            </div>
         </>
     )
 }
