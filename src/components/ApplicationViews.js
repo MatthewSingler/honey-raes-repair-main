@@ -3,6 +3,7 @@ import { Route } from "react-router-dom"
 import { CustomerList } from "./customers/CustomerList"
 import { EmployeeList } from "./EmployeeList"
 import { TicketList } from "./TicketList"
+
 export const ApplicationViews = () => {
     return (
         <>
