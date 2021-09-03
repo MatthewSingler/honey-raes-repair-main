@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react"
+import { useHistory } from "react-router"
 
 export const EmployeeList = () => {
     const [employees, setEmployees] = useState([])
     const [employeeSpecialty, setSpecialty] = useState([])
+    const history = useHistory()
+
     useEffect(
         () => {
             fetch("http://localhost:8088/employees")
@@ -13,13 +16,14 @@ export const EmployeeList = () => {
         },
         []
     )
-
+        
     useEffect(
         () => {
         const eachEmployeeSpeciality = employees.map(employee => employee.specialty)
         setSpecialty(eachEmployeeSpeciality.join(", "))
     }, [employees])
 
+    
 
     return (
         <>
@@ -34,6 +38,9 @@ export const EmployeeList = () => {
                     }
                 )
             }
+            <button onClick={() => history.push("/employees/create")} className="btn btn-primary">
+                Hire Employee
+            </button>
         </>
     )
 }
