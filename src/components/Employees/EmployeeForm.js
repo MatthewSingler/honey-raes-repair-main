@@ -1,12 +1,8 @@
 import React, { useState } from "react"
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 
 export const EmployeeForm = () => {
-    const [newEmployee, setNewEmployee] = useState({
-        id: 1,
-        name: "",
-        specialty:""
-    })
+    const [newEmployee, setNewEmployee] = useState([])
 
     const history = useHistory()
 
@@ -14,7 +10,7 @@ export const EmployeeForm = () => {
         event.preventDefault()
         
         const hiredEmployee = {
-            id: 1,
+            id: newEmployee.id,
             name: newEmployee.name,
             specialty: newEmployee.specialty
         }
@@ -38,6 +34,10 @@ export const EmployeeForm = () => {
                 <div className="form-group">
                     <label htmlFor="name">Name</label>
                     <input
+                    required autoFocus
+                    type="text"
+                    className="form-control"
+                    placeholder="employee name"
                         onChange={
                             (event) => {
                                 const copyOfEmployee = { ...newEmployee }
@@ -45,10 +45,6 @@ export const EmployeeForm = () => {
                                 setNewEmployee(copyOfEmployee)
                             }
                         }
-                        required autoFocus
-                        type="text"
-                        className="form-control"
-                        placeholder=""
                     />
                 </div>
             </fieldset>
@@ -56,6 +52,10 @@ export const EmployeeForm = () => {
                 <div className="form-group">
                     <label htmlFor="name">specialty</label>
                     <input
+                        required autoFocus
+                        type="text"
+                        className="form-control"
+                        placeholder="employee specialty"
                         onChange={
                             (event) => {
                                 const copyOfEmployee = { ...newEmployee }
