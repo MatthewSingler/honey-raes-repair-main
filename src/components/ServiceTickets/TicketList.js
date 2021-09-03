@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react"
+import { useHistory } from "react-router"
 
 export const TicketList = () => {
     const [serviceTickets, setServiceTickets] = useState([])
     const [openServiceTickets, setTickets] = useState([])
+    const history = useHistory()
 
     useEffect(
         () => {
@@ -24,6 +26,9 @@ export const TicketList = () => {
 
     return (
         <>
+            <div>
+            <button onClick={() => history.push("/tickets/create")}>Create Ticket</button>
+            </div>
             <div>
                 Service Tickets: {openServiceTickets}
 
