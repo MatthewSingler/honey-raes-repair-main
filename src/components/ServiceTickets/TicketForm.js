@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { useHistory } from "react-router";
 
 export const TicketForm = () => {
     const [ticket, updateTicket] = useState({
@@ -6,8 +7,30 @@ export const TicketForm = () => {
         emergency: false
     });
 
-    const saveTicket = (event) => {
+    const history = useHistory()
+    
+    const submitTicket = (event) => {
         event.preventDefault()
+
+        const newTicket = {
+            description: ticket.description,
+            emergency: ticket.emergency,
+            customerId: parseInt(localStorage.getItem("honey_customer")),
+            employeeId: 1,
+            dateCompleted: ""
+        }
+        const fetchOption = {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(newTicket)
+        }
+
+        return fetch("http://localhost:8088/serviceTickets", fetchOption)
+            .then(() => {
+                history.push("/serviceTickets")
+            })
     }
 
     return (
@@ -44,7 +67,7 @@ export const TicketForm = () => {
                          } />
                 </div>
             </fieldset>
-            <button className="btn btn-primary" onClick={saveTicket}>
+            <button onClick={submitTicket} className="btn btn-primary">
                 Submit Ticket
             </button>
         </form>
