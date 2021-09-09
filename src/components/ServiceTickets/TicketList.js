@@ -30,7 +30,7 @@ export const TicketList = () => {
             <button onClick={() => history.push("/tickets/create")}>Create Ticket</button>
             </div>
             <div>
-                Service Tickets: {openServiceTickets}
+                Service Tickets: {`There are currently ${serviceTickets.length} open tickets`}
 
             {
                 serviceTickets.map(
