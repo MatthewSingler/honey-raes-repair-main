@@ -36,13 +36,13 @@ export const TicketList = () => {
             {
                 serviceTickets.map(
                     (ticket) => {
-                        return
-                        <div key={`ticket--${ticket.id}`} className={ticket.emergency ? "emergency" : "ticket"}>
+                        return(
+                        <div key={`ticket--${ticket.id}`} className={ticket.emergency ? "emergency" : ""}>
                             <p>{ticket.emergency ? "🚑" : ""} {ticket.description} submitted by {ticket.customer.name} and worked on by {ticket.employee.name}</p>
                         </div>
-                    }
-                    )
-                }
+                        )}
+                )
+            }
             </div>
         </>
     )
