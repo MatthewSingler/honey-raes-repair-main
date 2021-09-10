@@ -24,6 +24,9 @@ export const ApplicationViews = () => {
             <Route path="/tickets/create">
                 <TicketForm />
             </Route>
+            <Route exact path="/tickets/:ticketId(\d+)">
+                <TicketForm />
+            </Route>
         </>
     )
 }
